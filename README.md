@@ -41,7 +41,7 @@ Dubbo | RPC服务 | [https://dubbo.apache.org/zh-cn/](https://dubbo.apache.org/z
 ![](document/resource/组件图.png)
 
 #### 数据库设计
-// TODO
+[Tables](./tables.md)
 
 #### 接口设计
-// TODO
+[API](./api.md)

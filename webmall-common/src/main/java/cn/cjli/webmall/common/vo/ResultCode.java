@@ -10,9 +10,9 @@ public enum ResultCode {
 	/**
 	 *
 	 */
-	SUCCESS(200, "操作成功"),
-	FAILED(500, "操作失败"),
-	VALIDATE_FAILED(404, "参数检验失败");
+	SUCCESS(200, "SUCCESS"),
+	FAILED(500, "FAILED"),
+	VALIDATE_FAILED(404, "VALIDATE_FAILED");
 	private long code;
 	private String message;
 

@@ -8,7 +8,7 @@ import javax.persistence.*;
  * @author Lichaojie
  * @version 2019/5/20 19:41
  */
-@Table
+@Table(name = "tb_test_entity")
 @Entity
 public class TestEntity {
 	@Id

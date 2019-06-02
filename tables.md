@@ -1,6 +1,11 @@
 ### WebMall Tables
 
-[TOC]
+* [买家](#tb_buyer)
+* [卖家](#tb_seller)
+* [商品](#tb_commodity)
+* [订单](#tb_order)
+* [购物车](#tb_cart)
+* [物流](#tb_logistics)
 
 #### tb_buyer
 | 字段 | 类型 | Primary Key | NOT NULL | 说明 |

@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 public class Logistics {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "logistics_id")
 	private long logisticsId;
 

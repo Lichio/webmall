@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity
 public class Buyer {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "buyer_id")
 	private long buyerId;
 

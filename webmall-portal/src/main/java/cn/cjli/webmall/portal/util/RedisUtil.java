@@ -168,4 +168,15 @@ public class RedisUtil {
 			return false;
 		}
 	}
+
+	public static class KeyGenerator{
+		/**
+		 * 构造短信验证码的key
+		 * @param phone
+		 * @return
+		 */
+		public static String createSmsKey(String phone){
+			return "smscode" + phone;
+		}
+	}
 }

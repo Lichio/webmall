@@ -1,41 +1,30 @@
-package cn.cjli.webmall.data.entity;
+package cn.cjli.webmall.portal.vo;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 
 /**
- * webmall cn.cjli.webmall.data.entity
+ * webmall cn.cjli.webmall.portal.vo
  *
  * @author Lichaojie
- * @version 2019/6/2 18:04
+ * @version 2019/6/3 16:45
  */
-@Table(name = "tb_commodity")
-@Entity
-public class Commodity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "commodity_id")
+public class BuyerCommodityDetailVO {
+
 	private long commodityId;
 
-	@Column(name = "name")
 	private String name;
 
-	@Column(name = "description")
 	private String description;
 
-	@Column(name = "picture")
 	private String picture;
 
-	@Column(name = "quantity")
 	private int quantity;
 
-	@Column(name = "price")
 	private double price;
 
-	@Column(name = "seller_id")
 	private long sellerId;
 
-	@Column(name = "is_deleted")
-	private boolean deleted;
+	private String shop;
 
 	public long getCommodityId() {
 		return commodityId;
@@ -93,11 +82,11 @@ public class Commodity {
 		this.sellerId = sellerId;
 	}
 
-	public boolean isDeleted() {
-		return deleted;
+	public String getShop() {
+		return shop;
 	}
 
-	public void setDeleted(boolean deleted) {
-		this.deleted = deleted;
+	public void setShop(String shop) {
+		this.shop = shop;
 	}
 }

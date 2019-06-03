@@ -15,10 +15,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class RpcManager {
 
+	/*
 	@Reference(url = "dubbo://localhost:20880", check = false)
 	private TestInterface testInterface;
 
 	public TestVO getInfo(Long id){
 		return testInterface.getInfo(id);
+	}
+
+	 */
+	public TestVO getInfo(Long id){
+		return new TestVO();
 	}
 }

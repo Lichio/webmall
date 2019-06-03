@@ -60,7 +60,7 @@
 
 ***
 
-#### tb_cart（购物车）
+#### tb_cart
 | 字段 | 类型 | Primary Key | NOT NULL | 说明 |
 ---|---|---|---|---
 |cart_id| | true| true| 购物车ID，自增|

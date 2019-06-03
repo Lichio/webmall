@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 public class TestEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "entity_id")
 	private long entityId;
 

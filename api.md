@@ -129,7 +129,7 @@
 	"code": 200,
 	"message": "SUCCESS",
 	"data": {
-		"buyerId": "1",
+		"buyerId": 1,
 		"username": "18706811105"
 	}
 }
@@ -157,7 +157,7 @@
 	"code": 200,
 	"message": "SUCCESS",
 	"data": {
-		"buyerId": "1",
+		"buyerId": 1,
 		"username": "18706811105"
 	}
 }
@@ -168,7 +168,7 @@
 ### 获取首页商品列表（buyer）
 #### Request
 - Method：**GET**
-- URL：```/v1.0/buyer/commodities?pageSize=10&pageNumber=1 ```
+- URL：```/v1.0/buyer/commodities?pageSize=10&pageNumber=0 ```
 - Headers：
 - Body：
 
@@ -177,7 +177,7 @@
 ```json
 [
 	{
-		"commodity_id": "1",
+		"commodityId": 1,
 		"name": "商品名称",
 		"picture": ""
 	}
@@ -189,7 +189,7 @@
 ### 获取商品详情（buyer）
 #### Request
 - Method：**GET**
-- URL：```/v1.0/buyer/commodity?commodity_id=1 ```
+- URL：```/v1.0/buyer/commodity?commodityId=1 ```
 - Headers：
 - Body：
 
@@ -197,13 +197,13 @@
 - Body
 ```json
 {
-	"commodity_id": "商品ID",
+	"commodityId": "商品ID",
 	"name": "商品名称",
 	"picture": "图片",
 	"description": "描述",
 	"quantity": "剩余量",
 	"price": "价格",
-	"seller_id": "卖家ID",
+	"sellerId": "卖家ID",
 	"shop": "店铺"
 }
 ```
@@ -218,9 +218,9 @@
 - Body：
 ```json
 {
-	"commodity_id": "1",
+	"commodityId": "1",
 	"quantity": "2",
-	"buyer_id": "1"
+	"buyerId": "1"
 }
 ```
 
@@ -251,11 +251,11 @@
 	"message": "SUCCESS",
 	"data": [
 		{
-			"commodity_id": "1",
+			"commodityId": "1",
 			"name": "HUAWEI P30",
 			"picture": "pic url",
 			"quantity": "2",
-			"create_time": "201906021623"
+			"createTime": "201906021623"
 		}
 	]
 }
@@ -271,10 +271,10 @@
 - Body：
 ```json
 {
-	"commodity_id": 1,
+	"commodityId": 1,
 	"quantity": 2,
 	"totalValue": 450,
-	"buyer_id": 1,
+	"buyerId": 1,
 	"address": "shanghai"
 }
 ```
@@ -306,13 +306,13 @@
 	"message": "SUCCESS",
 	"data": [
 		{
-			"order_sn": "订单编号",
-			"commodity_id": 1,
+			"orderSn": "订单编号",
+			"commodityId": 1,
 			"name": "商品名称",
 			"picture": "商品图片",
 			"quantity": 2,
 			"totalValue": 450,
-			"create_time": "201906021633",
+			"createTime": "201906021633",
 			"status": 1
 		}
 	]
@@ -336,7 +336,7 @@
 	"message": "SUCCESS",
 	"data": [
 		{
-			"order_sn": "",
+			"orderSn": "",
 			"status": 0
 		}
 	]
@@ -421,7 +421,7 @@
 	"description": "",
 	"quantity": 9999,
 	"price": 123,
-	"seller_id": 1
+	"sellerId": 1
 }
 ```
 
@@ -445,7 +445,7 @@
 - Body：
 ```json
 {
-	"commodity_id": 1,
+	"commodityId": 1,
 	"name": "",
 	"picture": "",
 	"description": "",
@@ -469,14 +469,9 @@
 ### 删除商品
 #### Request
 - Method：**DELETE**
-- URL：```/v1.0/seller/commodity ```
-- Headers：Content-Type:application/json
+- URL：```/v1.0/seller/commodity?commodityId=1 ```
+- Headers：
 - Body：
-```json
-{
-	"commodity_id": 1
-}
-```
 
 #### Response
 - Body
@@ -493,7 +488,7 @@
 ### 获取商品详情（seller）
 #### Request
 - Method：**GET**
-- URL：```/v1.0/seller/commodity?commodity_id=1 ```
+- URL：```/v1.0/seller/commodity?commodityId=1 ```
 - Headers：
 - Body：
 
@@ -501,7 +496,7 @@
 - Body
 ```json
 {
-	"commodity_id": "商品ID",
+	"commodityId": "商品ID",
 	"name": "商品名称",
 	"picture": "图片",
 	"description": "描述",
@@ -527,7 +522,7 @@
 	"message": "OK",
 	"data": [
 		{
-			"commodity_id": "1",
+			"commodityId": "1",
 			"name": "商品名称",
 			"picture": ""
 		}
@@ -552,13 +547,13 @@
 	"message": "SUCCESS",
 	"data": [
 		{
-			"order_sn": "订单编号",
-			"commodity_id": 1,
+			"orderSn": "订单编号",
+			"commodityId": 1,
 			"name": "商品名称",
 			"picture": "商品图片",
 			"quantity": 2,
 			"totalValue": 450,
-			"create_time": "201906021633",
+			"createTime": "201906021633",
 			"status": 1
 		}
 	]

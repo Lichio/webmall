@@ -1,5 +1,6 @@
 package cn.cjli.webmall.service.sms;
 
+import cn.cjli.webmall.service.domain.SmscodeType;
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.CommonRequest;
 import com.aliyuncs.CommonResponse;
@@ -9,6 +10,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
+import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  * webmall cn.cjli.webmall.service.sms
@@ -17,7 +19,16 @@ import com.aliyuncs.profile.DefaultProfile;
  * @version 2019/5/22 17:06
  */
 public class SMService {
-	public static boolean sendSms(String phoneNumber, String code){
+	public static boolean sendSms(String phoneNumber, String code, String type){
+		String templateCode = "";
+		if (type != null && type.equals(SmscodeType.LOGIN.getValue())){
+			templateCode = "SMS_166868089";
+		}else if (type != null && type.equals(SmscodeType.REGISTER.getValue())){
+			templateCode = "SMS_166080032";
+		}else if (type != null && type.equals(SmscodeType.CHANGE_PASSWORD.getValue())){
+			templateCode = "SMS_166779702";
+		}
+
 		JSONObject templateParamValue = new JSONObject();
 		templateParamValue.put("code",code);
 
@@ -32,7 +43,7 @@ public class SMService {
 		request.setAction("SendSms");
 		request.putQueryParameter("PhoneNumbers", phoneNumber);
 		request.putQueryParameter("SignName", "WebMall商城");
-		request.putQueryParameter("TemplateCode", "SMS_166080032");
+		request.putQueryParameter("TemplateCode", templateCode);
 		request.putQueryParameter("TemplateParam", templateParamValue.toJSONString());
 		try {
 			CommonResponse response = client.getCommonResponse(request);
@@ -46,7 +57,11 @@ public class SMService {
 		return false;
 	}
 
+	public static String randomCode(){
+		return RandomStringUtils.randomNumeric(6);
+	}
+
 	public static void main(String[] args){
-		System.out.println(sendSms("18706811105","1214"));
+		System.out.println(sendSms("18706811105","1214", "register"));
 	}
 }

@@ -20,6 +20,8 @@
 * [获取商品详情（seller）](#获取商品详情（seller）)
 * [获取商品列表（seller）](#获取商品列表（seller）)
 * [查看订单（seller）](#查看订单（seller）)
+* [提交物流信息](#提交物流信息)
+* [修改物流状态](#修改物流状态)
 
 
 ### 获取验证码
@@ -560,5 +562,52 @@
 }
 ```
 
+***
 
+### 提交物流信息
+访问logistics-service模块
+#### Request
+- Method：**POST**
+- URL：```/v1.0/logistics ```
+- Headers：Content-Type:application/json
+- Body：
+```json
+{
+	"orderSn": "XXXXXXX",
+	"status": 2
+}
+```
 
+#### Response
+- Body
+```json
+{
+	"code": 200,
+	"message": "SUCCESS",
+	"data": ""
+}
+```
+
+### 修改物流状态
+访问logistics-service模块
+#### Request
+- Method：**PUT**
+- URL：```/v1.0/logistics ```
+- Headers：Content-Type:application/json
+- Body：
+```json
+{
+	"orderSn": "XXXXXXX",
+	"status": 2
+}
+```
+
+#### Response
+- Body
+```json
+{
+	"code": 200,
+	"message": "SUCCESS",
+	"data": ""
+}
+```

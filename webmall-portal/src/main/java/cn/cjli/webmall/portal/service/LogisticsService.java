@@ -1,6 +1,6 @@
 package cn.cjli.webmall.portal.service;
 
-import cn.cjli.webmall.logistics.api.vo.TestVO;
+import cn.cjli.webmall.portal.vo.LogisticsStatusVO;
 
 /**
  * webmall cn.cjli.webmall.portal.service
@@ -9,5 +9,5 @@ import cn.cjli.webmall.logistics.api.vo.TestVO;
  * @version 2019/5/22 10:30
  */
 public interface LogisticsService {
-
+	LogisticsStatusVO showStatus(String orderSn);
 }

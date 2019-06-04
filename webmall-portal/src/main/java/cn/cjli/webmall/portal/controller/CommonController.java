@@ -36,7 +36,7 @@ public class CommonController {
 	public CommonResult getSmsCode(@RequestParam("type")String type,
 								   @RequestParam("phone")String phone){
 		String code = SMService.randomCode();
-		if (SMService.sendSms(phone, code, type)){
+		if (SMService.sendSmscode(phone, code, type)){
 			redisUtil.set(RedisUtil.KeyGenerator.createSmsKey(phone), code);
 			return CommonResult.success();
 		}else {

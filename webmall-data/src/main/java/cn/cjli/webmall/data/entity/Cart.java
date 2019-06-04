@@ -32,5 +32,51 @@ public class Cart {
 	@Column(name = "is_deleted")
 	private boolean deleted;
 
+	public long getCartId() {
+		return cartId;
+	}
 
+	public void setCartId(long cartId) {
+		this.cartId = cartId;
+	}
+
+	public long getBuyerId() {
+		return buyerId;
+	}
+
+	public void setBuyerId(long buyerId) {
+		this.buyerId = buyerId;
+	}
+
+	public long getCommodityId() {
+		return commodityId;
+	}
+
+	public void setCommodityId(long commodityId) {
+		this.commodityId = commodityId;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 }

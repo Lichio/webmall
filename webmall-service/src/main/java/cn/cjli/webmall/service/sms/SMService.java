@@ -19,7 +19,37 @@ import org.apache.commons.lang3.RandomStringUtils;
  * @version 2019/5/22 17:06
  */
 public class SMService {
-	public static boolean sendSms(String phoneNumber, String code, String type){
+
+	public static boolean sendSmsNotification(String phone, String name){
+		JSONObject templateParamValue = new JSONObject();
+		templateParamValue.put("name", name );
+
+		DefaultProfile profile = DefaultProfile.getProfile("default", "LTAIHxsxRWoWG5R2", "fFEsoheaapfh2csqc2ctBzBLfxR0fC");
+		IAcsClient client = new DefaultAcsClient(profile);
+
+		CommonRequest request = new CommonRequest();
+		//request.setProtocol(ProtocolType.HTTPS);
+		request.setMethod(MethodType.POST);
+		request.setDomain("dysmsapi.aliyuncs.com");
+		request.setVersion("2017-05-25");
+		request.setAction("SendSms");
+		request.putQueryParameter("PhoneNumbers", phone);
+		request.putQueryParameter("SignName", "WebMall商城");
+		request.putQueryParameter("TemplateCode", "SMS_167051609");
+		request.putQueryParameter("TemplateParam", templateParamValue.toJSONString());
+		try {
+			CommonResponse response = client.getCommonResponse(request);
+			String result = response.getData();
+			JSONObject jsonObject = (JSONObject) JSONObject.parse(result);
+			System.out.println(jsonObject.toJSONString());
+			return "OK".equals(jsonObject.get("Code"));
+		} catch (ClientException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public static boolean sendSmscode(String phoneNumber, String code, String type){
 		String templateCode = "";
 		if (type != null && type.equals(SmscodeType.LOGIN.getValue())){
 			templateCode = "SMS_166868089";
@@ -62,6 +92,6 @@ public class SMService {
 	}
 
 	public static void main(String[] args){
-		System.out.println(sendSms("18706811105","1214", "register"));
+		System.out.println(sendSmscode("18706811105","1214", "register"));
 	}
 }

@@ -1,7 +1,7 @@
 package cn.cjli.webmall.data.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * webmall cn.cjli.webmall.data.entity

@@ -37,4 +37,9 @@ public interface CommodityRepository extends JpaRepository<Commodity, Long> {
 	@Modifying
 	@Query(value = "update Commodity c set c.deleted = true where c.commodityId = ?1")
 	int logicallyDelete(long commodityId);
+
+	@Transactional
+	@Modifying
+	@Query(value = "update Commodity c set c.quantity = ?2 where c.commodityId = ?1")
+	int updateQuantity(long commodityId, int quantity);
 }

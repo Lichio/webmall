@@ -1,7 +1,5 @@
 package cn.cjli.webmall.portal.util;
 
-import cn.cjli.webmall.portal.vo.TestEntityVO;
-import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,7 +15,7 @@ public class RabbitMQUtil {
 	@Autowired
 	private AmqpTemplate amqpTemplate;
 
-	public void sendMessage(String queue, TestEntityVO message){
+	public void sendMessage(String queue, Object message){
 		amqpTemplate.convertAndSend(queue,message);
 	}
 }

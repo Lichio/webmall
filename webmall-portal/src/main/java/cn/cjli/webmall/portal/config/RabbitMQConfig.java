@@ -1,5 +1,6 @@
 package cn.cjli.webmall.portal.config;
 
+import cn.cjli.webmall.portal.domain.QueueType;
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 	@Bean
-	public Queue notificationQueue() {
-		return new Queue("notification");
+	public Queue testNotify() {
+		return new Queue("testNotify");
 	}
+
+	@Bean
+	public Queue buyerNotify(){return new Queue(QueueType.BUYER_NOTIFY.getValue());}
+
+	@Bean
+	public Queue sellerNotify(){return new Queue(QueueType.SELLER_NOTIFY.getValue());}
 }

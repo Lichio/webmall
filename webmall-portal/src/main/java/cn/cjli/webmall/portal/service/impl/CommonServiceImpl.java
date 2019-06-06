@@ -5,16 +5,16 @@ import cn.cjli.webmall.data.entity.Buyer;
 import cn.cjli.webmall.data.entity.Seller;
 import cn.cjli.webmall.data.repository.BuyerRepository;
 import cn.cjli.webmall.data.repository.SellerRepository;
+import cn.cjli.webmall.portal.domain.QueueType;
 import cn.cjli.webmall.portal.domain.RoleType;
 import cn.cjli.webmall.portal.service.CommonService;
+import cn.cjli.webmall.portal.util.RabbitMQUtil;
 import cn.cjli.webmall.portal.vo.BuyerLoginVO;
 import cn.cjli.webmall.portal.vo.SellerLoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * webmall cn.cjli.webmall.portal.service.impl
@@ -28,6 +28,8 @@ public class CommonServiceImpl implements CommonService {
 	private BuyerRepository buyerRepository;
 	@Autowired
 	private SellerRepository sellerRepository;
+	@Autowired
+	private RabbitMQUtil rabbitMQUtil;
 
 	@Override
 	public CommonResult doRegister(String username, String password, String role) {
@@ -37,6 +39,7 @@ public class CommonServiceImpl implements CommonService {
 			buyer.setPassword(password);
 			buyer.setCreateTime(new Date());
 			if(buyerRepository.save(buyer) != null){
+				rabbitMQUtil.sendMessage(QueueType.BUYER_NOTIFY.getValue(), buyer);
 				return CommonResult.success();
 			}
 		}else if (role != null && role.equals(RoleType.SELLER.getValue())){
@@ -46,6 +49,7 @@ public class CommonServiceImpl implements CommonService {
 			seller.setShop(username + "'s shop");
 			seller.setCreateTime(new Date());
 			if(sellerRepository.save(seller) != null){
+				rabbitMQUtil.sendMessage(QueueType.SELLER_NOTIFY.getValue(), seller);
 				return CommonResult.success();
 			}
 		}

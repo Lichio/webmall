@@ -10,9 +10,9 @@ import cn.cjli.webmall.portal.util.CodeGenerator;
 import cn.cjli.webmall.portal.vo.OrderShowVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -31,8 +31,12 @@ public class OrderServiceImpl implements OrderService {
 	private OrderRepository orderRepository;
 
 	@Override
+	@Transactional
 	public Order addOrder(long commodityId, long buyerId, int quantity, String address, double totalValue) {
 		Commodity commodity = commodityRepository.getOne(commodityId);
+		if (commodity.getQuantity() < quantity){
+			return null;
+		}
 		Order order = new Order();
 		order.setCommodityId(commodityId);
 		order.setBuyerId(buyerId);
@@ -44,6 +48,7 @@ public class OrderServiceImpl implements OrderService {
 		order.setDeleted(false);
 		order.setCreateTime(new Date());
 		order.setOrderSn(CodeGenerator.orderSn(order.getCreateTime(),commodity.getCommodityId()));
+		commodityRepository.updateQuantity(commodity.getCommodityId(),commodity.getQuantity() - quantity);
 
 		return orderRepository.save(order);
 	}

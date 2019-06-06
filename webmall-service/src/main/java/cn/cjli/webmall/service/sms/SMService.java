@@ -7,7 +7,6 @@ import com.aliyuncs.CommonResponse;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.exceptions.ClientException;
-import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -34,7 +33,7 @@ public class SMService {
 		request.setVersion("2017-05-25");
 		request.setAction("SendSms");
 		request.putQueryParameter("PhoneNumbers", phone);
-		request.putQueryParameter("SignName", "WebMall商城");
+		request.putQueryParameter("SignName", "后端之家");
 		request.putQueryParameter("TemplateCode", "SMS_167051609");
 		request.putQueryParameter("TemplateParam", templateParamValue.toJSONString());
 		try {

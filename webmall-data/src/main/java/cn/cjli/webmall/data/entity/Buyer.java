@@ -1,6 +1,7 @@
 package cn.cjli.webmall.data.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
  */
 @Table(name = "tb_buyer")
 @Entity
-public class Buyer {
+public class Buyer implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "buyer_id")

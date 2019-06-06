@@ -2,15 +2,12 @@ package cn.cjli.webmall.portal.service.impl;
 
 import cn.cjli.webmall.data.entity.TestEntity;
 import cn.cjli.webmall.data.repository.TestEntityRepository;
-import cn.cjli.webmall.logistics.api.interfaces.TestInterface;
 import cn.cjli.webmall.logistics.api.vo.TestVO;
 import cn.cjli.webmall.portal.manager.RpcManager;
 import cn.cjli.webmall.portal.service.TestEntityService;
 import cn.cjli.webmall.portal.util.RabbitMQUtil;
 import cn.cjli.webmall.portal.util.RedisUtil;
 import cn.cjli.webmall.portal.vo.TestEntityVO;
-import com.alibaba.dubbo.config.annotation.Reference;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +43,7 @@ public class TestEntiryServiceImpl implements TestEntityService {
 		entityVO.setName(testEntity.getName());
 		entityVO.setInfo(testEntity.getInfo());
 		entityVO.setType(testEntity.getType());
-		rabbitMQUtil.sendMessage("notification",entityVO);
+		rabbitMQUtil.sendMessage("testNotify",entityVO);
 		return entityVO;
 	}
 

@@ -178,5 +178,9 @@ public class RedisUtil {
 		public static String createSmsKey(String phone){
 			return "smscode" + phone;
 		}
+
+		public static String createLoginStatusKey(String role, long id){
+			return role + id + "-login";
+		}
 	}
 }

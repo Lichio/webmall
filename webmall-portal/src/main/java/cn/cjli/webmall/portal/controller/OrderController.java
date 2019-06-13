@@ -1,7 +1,6 @@
 package cn.cjli.webmall.portal.controller;
 
 import cn.cjli.webmall.common.vo.CommonResult;
-import cn.cjli.webmall.data.entity.Commodity;
 import cn.cjli.webmall.portal.ro.OrderAddRO;
 import cn.cjli.webmall.portal.service.OrderService;
 import cn.cjli.webmall.portal.vo.OrderShowVO;
@@ -17,6 +16,7 @@ import java.util.List;
  * @version 2019/6/4 10:32
  */
 @RestController
+@CrossOrigin
 public class OrderController {
 
 	@Autowired

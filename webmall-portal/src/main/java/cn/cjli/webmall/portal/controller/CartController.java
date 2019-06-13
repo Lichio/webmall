@@ -16,6 +16,7 @@ import java.util.List;
  * @version 2019/6/4 9:59
  */
 @RestController
+@CrossOrigin
 public class CartController {
 
 	@Autowired
@@ -34,5 +35,12 @@ public class CartController {
 	public CommonResult<List<CartVO>> showCart(@RequestParam("buyerId") long buyerId){
 		List<CartVO> data = cartService.showCart(buyerId);
 		return CommonResult.success(data);
+	}
+
+	@RequestMapping(value = "/v1.0/buyer/cart", method = RequestMethod.DELETE)
+	public CommonResult deleteCart(@RequestParam("buyerId") long buyerId,
+								   @RequestParam("commodityId") long commodityId){
+		cartService.deleteCart(buyerId,commodityId);
+		return CommonResult.success();
 	}
 }

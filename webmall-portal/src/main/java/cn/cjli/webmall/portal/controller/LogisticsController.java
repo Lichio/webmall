@@ -4,10 +4,7 @@ import cn.cjli.webmall.common.vo.CommonResult;
 import cn.cjli.webmall.portal.service.LogisticsService;
 import cn.cjli.webmall.portal.vo.LogisticsStatusVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * webmall cn.cjli.webmall.portal.controller
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 2019/6/4 16:17
  */
 @RestController
+@CrossOrigin
 public class LogisticsController {
 
 	@Autowired

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * @version 2019/6/3 16:23
  */
 @RestController
+@CrossOrigin
 public class CommodityController {
 
 	@Autowired

@@ -16,4 +16,6 @@ public interface CommonService {
 	CommonResult passwordLogin(String username, String password, String role);
 
 	CommonResult smscodeLogin(String username, String role);
+
+	CommonResult checkLogin(String role, long id);
 }

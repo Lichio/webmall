@@ -9,6 +9,7 @@ import cn.cjli.webmall.portal.domain.QueueType;
 import cn.cjli.webmall.portal.domain.RoleType;
 import cn.cjli.webmall.portal.service.CommonService;
 import cn.cjli.webmall.portal.util.RabbitMQUtil;
+import cn.cjli.webmall.portal.util.RedisUtil;
 import cn.cjli.webmall.portal.vo.BuyerLoginVO;
 import cn.cjli.webmall.portal.vo.SellerLoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,15 @@ import java.util.Date;
  */
 @Service
 public class CommonServiceImpl implements CommonService {
+
 	@Autowired
 	private BuyerRepository buyerRepository;
 	@Autowired
 	private SellerRepository sellerRepository;
 	@Autowired
 	private RabbitMQUtil rabbitMQUtil;
+	@Autowired
+	private RedisUtil redisUtil;
 
 	@Override
 	public CommonResult doRegister(String username, String password, String role) {
@@ -78,6 +82,7 @@ public class CommonServiceImpl implements CommonService {
 				BuyerLoginVO buyerLoginVO = new BuyerLoginVO();
 				buyerLoginVO.setBuyerId(buyer.getBuyerId());
 				buyerLoginVO.setUsername(buyer.getUsername());
+				redisUtil.set(RedisUtil.KeyGenerator.createLoginStatusKey(role,buyer.getBuyerId()),"password",60L*24*24);
 				return CommonResult.success(buyerLoginVO);
 			}
 		}else if (role != null && role.equals(RoleType.SELLER.getValue())){
@@ -86,6 +91,7 @@ public class CommonServiceImpl implements CommonService {
 				SellerLoginVO sellerLoginVO = new SellerLoginVO();
 				sellerLoginVO.setSellerId(seller.getSellerId());
 				sellerLoginVO.setUsername(seller.getUsername());
+				redisUtil.set(RedisUtil.KeyGenerator.createLoginStatusKey(role,seller.getSellerId()),"password", 60L*24*24);
 				return CommonResult.success(sellerLoginVO);
 			}
 		}
@@ -100,6 +106,7 @@ public class CommonServiceImpl implements CommonService {
 				BuyerLoginVO buyerLoginVO = new BuyerLoginVO();
 				buyerLoginVO.setBuyerId(buyer.getBuyerId());
 				buyerLoginVO.setUsername(buyer.getUsername());
+				redisUtil.set(RedisUtil.KeyGenerator.createLoginStatusKey(role,buyer.getBuyerId()),"smscode",60L*24*24);
 				return CommonResult.success(buyerLoginVO);
 			}
 		}else if (role != null && role.equals(RoleType.SELLER.getValue())){
@@ -108,9 +115,19 @@ public class CommonServiceImpl implements CommonService {
 				SellerLoginVO sellerLoginVO = new SellerLoginVO();
 				sellerLoginVO.setSellerId(seller.getSellerId());
 				sellerLoginVO.setUsername(seller.getUsername());
+				redisUtil.set(RedisUtil.KeyGenerator.createLoginStatusKey(role,seller.getSellerId()),"smscode", 60L*24*24);
 				return CommonResult.success(sellerLoginVO);
 			}
 		}
 		return CommonResult.failed();
+	}
+
+	@Override
+	public CommonResult checkLogin(String role, long id) {
+		if (redisUtil.exists(RedisUtil.KeyGenerator.createLoginStatusKey(role,id))) {
+			return CommonResult.success();
+		}else {
+			return CommonResult.failed();
+		}
 	}
 }

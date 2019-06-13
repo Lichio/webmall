@@ -2,10 +2,7 @@ package cn.cjli.webmall.portal.controller;
 
 import cn.cjli.webmall.common.vo.CommonResult;
 import cn.cjli.webmall.portal.domain.RoleType;
-import cn.cjli.webmall.portal.ro.PasswordLoginRO;
-import cn.cjli.webmall.portal.ro.RegisterRO;
-import cn.cjli.webmall.portal.ro.ResetPasswordRO;
-import cn.cjli.webmall.portal.ro.SmscodeLoginRO;
+import cn.cjli.webmall.portal.ro.*;
 import cn.cjli.webmall.portal.service.CommonService;
 import cn.cjli.webmall.portal.util.RedisUtil;
 import cn.cjli.webmall.service.sms.SMService;
@@ -19,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @version 2019/6/3 12:52
  */
 @RestController
+@CrossOrigin
 public class CommonController {
 
 	@Autowired
@@ -133,5 +131,11 @@ public class CommonController {
 		}else {
 			return CommonResult.failed("验证码错误");
 		}
+	}
+
+	@RequestMapping(value = "/v1.0/checkLogin", method = RequestMethod.GET)
+	public CommonResult checkLogin(@RequestParam("role") String role,
+								   @RequestParam("id") Long id){
+		return commonService.checkLogin(role, id);
 	}
 }

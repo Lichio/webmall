@@ -1,7 +1,6 @@
 package cn.cjli.webmall.portal.service;
 
 import cn.cjli.webmall.data.entity.Cart;
-import cn.cjli.webmall.portal.ro.CartAddRO;
 import cn.cjli.webmall.portal.vo.CartVO;
 
 import java.util.List;
@@ -17,4 +16,6 @@ public interface CartService {
 	Cart addToCart(long buyerId, long commodityId, int quantity);
 
 	List<CartVO> showCart(long buyerId);
+
+	void deleteCart(long buyerId, long commodityId);
 }

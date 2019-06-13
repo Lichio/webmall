@@ -9,6 +9,7 @@
 * [获取商品详情（buyer）](#获取商品详情（buyer）)
 * [加入购物车](#加入购物车)
 * [查看购物车](#查看购物车)
+* [删除购物车](#删除购物车)
 * [提交订单（buyer）](#提交订单（buyer）)
 * [查看订单（buyer）](#查看订单（buyer）)
 * [查看物流信息](#查看物流信息)
@@ -264,6 +265,27 @@
 ```
 
 ***
+
+### 删除购物车
+#### Request
+- Method：**DELETE**
+- URL：```/v1.0/buyer/cart?buyerId=1&commodityId=1 ```
+- Headers：
+- Body：
+
+#### Response
+- Body
+```json
+{
+	"code": 200,
+	"message": "SUCCESS",
+	"data": ""
+}
+```
+
+
+***
+
 
 ### 提交订单（buyer）
 #### Request

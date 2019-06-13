@@ -12,9 +12,10 @@ import java.util.Date;
  */
 public class CartVO extends CartDetailCO {
 
+	private boolean checked;
 
-	public CartVO(long commodityId, String name, String picture, int quantity, Date createTime) {
-		super(commodityId, name, picture, quantity, createTime);
+	public CartVO(long commodityId, String name, String picture, int quantity, Date createTime,double price,boolean checked) {
+		super(commodityId, name, picture, quantity,price, createTime);
 	}
 
 	public static CartVO cast(CartDetailCO co){
@@ -22,6 +23,18 @@ public class CartVO extends CartDetailCO {
 				co.getName(),
 				co.getPicture(),
 				co.getQuantity(),
-				co.getCreateTime());
+				co.getCreateTime(),
+				co.getPrice(),
+				true
+				);
+	}
+
+	public boolean isChecked() {
+		return checked;
+	}
+
+	public CartVO setChecked(boolean checked) {
+		this.checked = checked;
+		return this;
 	}
 }

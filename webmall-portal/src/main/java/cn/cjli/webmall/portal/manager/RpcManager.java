@@ -6,7 +6,6 @@ import cn.cjli.webmall.logistics.api.vo.LogisticsStatusDTO;
 import cn.cjli.webmall.logistics.api.vo.TestVO;
 import cn.cjli.webmall.portal.vo.LogisticsStatusVO;
 import com.alibaba.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,10 +18,10 @@ import org.springframework.stereotype.Service;
 public class RpcManager {
 
 
-	@Reference(url = "dubbo://localhost:20880", check = false)
+	@Reference(url = "dubbo://localhost:20881", check = false)
 	private TestInterface testInterface;
 
-	@Reference(url = "dubbo://localhost:20880", check = false)
+	@Reference(url = "dubbo://localhost:20881", check = false)
 	private LogisticsInterface logisticsInterface;
 
 	public TestVO getInfo(Long id){

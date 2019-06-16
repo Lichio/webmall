@@ -19,7 +19,12 @@ public interface OrderService {
 				   String address,
 				   double totalValue);
 
-	List<OrderShowVO> showBuyerOrder(long buyerId);
+	Object showBuyerOrder(long buyerId, int page, int size);
 
 	List<OrderShowVO> showSellerOrder(long sellerId);
+
+	void deleteBuyerOrder(String orderSn);
+
+	OrderShowVO orderDetails(String orderSn);
+
 }

@@ -1,8 +1,5 @@
 package cn.cjli.webmall.data.co;
 
-import org.springframework.web.bind.annotation.Mapping;
-
-import javax.persistence.Entity;
 import java.util.Date;
 
 /**
@@ -29,7 +26,9 @@ public class OrderDetailCO {
 
 	private byte status;
 
-	public OrderDetailCO(String orderSn, long commodityId, String name, String picture, int quantity, double totalValue, Date createTime, byte status) {
+	private double price;
+
+	public OrderDetailCO(String orderSn, long commodityId, String name, String picture, int quantity, double totalValue, Date createTime, byte status, double price) {
 		this.orderSn = orderSn;
 		this.commodityId = commodityId;
 		this.name = name;
@@ -38,6 +37,7 @@ public class OrderDetailCO {
 		this.totalValue = totalValue;
 		this.createTime = createTime;
 		this.status = status;
+		this.price = price;
 	}
 
 	public String getOrderSn() {
@@ -102,5 +102,14 @@ public class OrderDetailCO {
 
 	public void setStatus(byte status) {
 		this.status = status;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public OrderDetailCO setPrice(double price) {
+		this.price = price;
+		return this;
 	}
 }

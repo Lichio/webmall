@@ -12,6 +12,8 @@
 * [删除购物车](#删除购物车)
 * [提交订单（buyer）](#提交订单（buyer）)
 * [查看订单（buyer）](#查看订单（buyer）)
+* [获取订单详情](#获取订单详情)
+* [删除订单](#删除订单)
 * [查看物流信息](#查看物流信息)
 * [用户登录(seller，密码登录)](#用户登录seller，密码登录)
 * [用户登录(seller，验证码登录)](#用户登录seller，验证码登录)
@@ -335,11 +337,63 @@
 			"name": "商品名称",
 			"picture": "商品图片",
 			"quantity": 2,
+			"price": 123.0,
 			"totalValue": 450,
 			"createTime": "201906021633",
 			"status": 1
 		}
 	]
+}
+```
+
+***
+
+### 获取订单详情
+#### Request
+- Method：**GET**
+- URL：```/v1.0/buyer/orderDetails?orderSn=xxx ```
+- Headers：
+- Body：
+
+#### Response
+- Body
+```json
+{
+	"code": 200,
+	"message": "SUCCESS",
+	"data": 
+		{
+			"orderSn": "订单编号",
+			"commodityId": 1,
+			"name": "商品名称",
+			"picture": "商品图片",
+			"quantity": 2,
+			"price": 123.0,
+			"totalValue": 450,
+			"createTime": "201906021633",
+			"status": 1
+		}
+	
+}
+```
+
+***
+
+### 删除订单
+#### Request
+- Method：**DELETE**
+- URL：```/v1.0/buyer/order?orderSn=xxx ```
+- Headers：
+- Body：
+
+#### Response
+- Body
+```json
+{
+	"code": 200,
+	"message": "SUCCESS",
+	"data": ""
+	
 }
 ```
 

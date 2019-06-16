@@ -11,8 +11,8 @@ import java.util.Date;
  * @version 2019/6/4 12:03
  */
 public class OrderShowVO extends OrderDetailCO {
-	public OrderShowVO(String orderSn, long commodityId, String name, String picture, int quantity, double totalValue, Date createTime, byte status) {
-		super(orderSn, commodityId, name, picture, quantity, totalValue, createTime, status);
+	public OrderShowVO(String orderSn, long commodityId, String name, String picture, int quantity, double totalValue, Date createTime, byte status, double price) {
+		super(orderSn, commodityId, name, picture, quantity, totalValue, createTime, status,price);
 	}
 
 	public static OrderShowVO cast(OrderDetailCO co){
@@ -23,6 +23,7 @@ public class OrderShowVO extends OrderDetailCO {
 				co.getQuantity(),
 				co.getTotalValue(),
 				co.getCreateTime(),
-				co.getStatus());
+				co.getStatus(),
+				co.getPrice());
 	}
 }
